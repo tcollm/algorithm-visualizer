@@ -1,6 +1,6 @@
 .nav {
-  background-color: black;
-  color: white;
+  background-color: #242424;
+  color: var(--white);
   padding: 15px 25px;
   position: fixed;
   top: 0;
@@ -9,6 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0px 1px 1px #2b2b2b; /* Bottom white line */
 }
 
 .navList,
@@ -28,8 +29,13 @@
 }
 
 .nav .link {
-  color: white;
+  color: var(--white);
   text-decoration: none;
+  font-weight: 600;
+}
+
+.navList .link {
+  color: var(--blue);
 }
 
 .nav .link:hover {

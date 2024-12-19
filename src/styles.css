@@ -1,0 +1,20 @@
+/* global styles for pages */
+
+:root {
+  --blue: #007bff;
+  --black: #242424;
+  --white: #ffffff;
+}
+
+.body {
+  position: relative;
+  text-align: center;
+  padding: 45px 15px 25px;
+  margin-top: 40px;
+  color: var(--black);
+  background-color: var(--white);
+}
+
+h1 {
+  color: var(--black);
+}

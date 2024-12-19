@@ -7,19 +7,24 @@ const NavBar = () => {
       <ul className={classes.navList}>
         <li>
           <Link to="/" className={classes.link}>
-            Home
+            Algorithm Visualizer
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="algorithms" className={classes.link}>
             Algorithms
           </Link>
-        </li>
+        </li> */}
       </ul>
       <ul className={classes.navListRight}>
         <li>
           <Link to="about" className={classes.link}>
             About
+          </Link>
+        </li>
+        <li>
+          <Link to="contact-me" className={classes.link}>
+            Contact Me
           </Link>
         </li>
       </ul>

@@ -1,12 +1,13 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
+import "./styles.css";
 
 const App = () => {
   return (
     <>
       <NavBar />
-      <h1>Algorithm Visualizer</h1>
-      {/* Not sure if necessary: <Outlet /> */}
+      <Outlet />
     </>
   );
 };
