@@ -1,0 +1,37 @@
+.nav {
+  background-color: black;
+  color: white;
+  padding: 15px 25px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navList,
+.navListRight {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navListRight {
+  margin-left: auto;
+}
+
+.nav li {
+  margin-right: 20px;
+}
+
+.nav .link {
+  color: white;
+  text-decoration: none;
+}
+
+.nav .link:hover {
+  text-decoration: underline;
+}
