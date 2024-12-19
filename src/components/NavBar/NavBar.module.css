@@ -34,10 +34,6 @@
   font-weight: 600;
 }
 
-.navList .link {
-  color: var(--blue);
-}
-
 .nav .link:hover {
   text-decoration: underline;
 }
