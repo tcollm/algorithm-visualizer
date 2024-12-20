@@ -67,12 +67,25 @@ const swapChildren = (parentNode) => {
   }
 };
 
+const calculateHeight = (tree) => {
+  // empty
+  if (!tree) {
+    return -1;
+  }
+
+  const leftHeight = calculateHeight(tree.children[0]);
+  const rightHeight = calculateHeight(tree.children[1]);
+
+  return Math.max(leftHeight, rightHeight) + 1;
+};
+
 const BST = () => {
   const treeData = {
     name: "9",
     children: [],
   };
 
+  // resize tree svg
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
