@@ -1,4 +1,5 @@
 import classes from "./BSTPage.module.css";
+import BST from "./CreateTree";
 
 const BSTPage = () => {
   return (
@@ -13,7 +14,7 @@ const BSTPage = () => {
       </section>
       <div className={classes.separator}></div>
       <section className={classes.rightDisplay}>
-        <div>Display tree</div>
+        <BST />
       </section>
     </div>
   );

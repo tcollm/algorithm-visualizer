@@ -1,3 +1,12 @@
+/* BST was slightly overflowing */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
 .container {
   display: flex;
   position: relative;
@@ -8,17 +17,28 @@
   height: calc(93vh); /* adjust to navbar */
 }
 
+.leftDisplay,
+.rightDisplay,
+.separator {
+  height: 100%;
+}
+
 .leftDisplay {
   flex: 1; /* 1/3 */
   padding: 15px 25px;
 }
 
 .rightDisplay {
+  padding: 20px;
   flex: 2; /* 2/3 */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* height: 100%; */
+  /* width: 100%; */
 }
 
 .separator {
   width: 1px;
   background-color: var(--black);
-  height: 100%;
 }
