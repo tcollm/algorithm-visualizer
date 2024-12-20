@@ -2,6 +2,7 @@ import App from "./App";
 import HomePage from "./components/HomePage/HomePage";
 import AboutPage from "./components/AboutPage/AboutPage";
 import BSTPage from "./components/BSTPage/BSTPage";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 const routes = [
   {
@@ -21,7 +22,7 @@ const routes = [
         element: <BSTPage />,
       },
     ],
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
   },
 ];
 
