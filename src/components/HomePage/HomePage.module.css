@@ -1,0 +1,7 @@
+/* Note: HomePage still imports styles from styles.css, but gets the boxes class from this file */
+
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
