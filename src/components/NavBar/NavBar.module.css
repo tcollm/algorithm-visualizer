@@ -1,7 +1,8 @@
 .nav {
-  background-color: #242424;
+  background-color: var(--black);
   color: var(--white);
-  padding: 15px 25px;
+  height: 7vh;
+  padding: 0 25px;
   position: fixed;
   top: 0;
   width: 100%;

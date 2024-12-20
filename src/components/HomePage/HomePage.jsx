@@ -6,7 +6,7 @@ const algorithms = [
     title: "Binary Search",
     desc: "description of Binary Search.",
     img: "null",
-    link: "null",
+    link: "bst",
   },
 ];
 
