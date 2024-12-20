@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 
-// TODO: traverse through treeData to append new nodes dynamically
+// TODO: create function to get height of tree
+// TODO: append nodes using user input
+// TODO: randomly build tree of set height
 
 const traverse = (jsonObj, target) => {
   if (jsonObj !== null && typeof jsonObj === "object") {
@@ -33,12 +35,10 @@ const append = (parentName, nodeName, treeData) => {
     if (parent.children.length == 2) {
       if (parseInt(nodeName) > parseInt(parentName)) {
         // newNode is greater than parent -> append to right child
-        const newParent = parent.children[1];
-        newParent.children.push(newNode);
+        append(parent.children[1].name, nodeName, treeData);
       } else {
         // newNode is less than parent -> append to left child
-        const newParent = parent.children[0];
-        newParent.children.push(newNode);
+        append(parent.children[0].name, nodeName, treeData);
       }
     } else {
       parent.children.push(newNode);
@@ -60,11 +60,6 @@ const swapChildren = (parentNode) => {
   const left = parentNode.children[0];
   const right = parentNode.children[1];
 
-  // note: caller function already verifies that 2 children exist
-  // if (!left || !right) {
-  //   return;
-  // }
-
   if (parseInt(left.name) > parseInt(right.name)) {
     const temp = left.name;
     left.name = right.name;
@@ -74,29 +69,9 @@ const swapChildren = (parentNode) => {
 
 const BST = () => {
   const treeData = {
-    name: "root",
-    children: [
-      {
-        name: "1",
-        children: [
-          {
-            name: "3",
-            children: [],
-          },
-          {
-            name: "5",
-            children: [],
-          },
-        ],
-      },
-    ],
+    name: "9",
+    children: [],
   };
-
-  append("1", "4", treeData);
-  append("5", "7", treeData);
-  append("5", "6", treeData);
-
-  // randomly append data until height is 10 or something, use hashset to avoid reusing data, append nums 1-100
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -136,8 +111,3 @@ const BST = () => {
 };
 
 export default BST;
-
-// new set up:
-// - create first and manage that as a binary tree
-// - then once all calculations done (traverse and append),
-//  build out the json object which will create the tree
