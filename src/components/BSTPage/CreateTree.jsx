@@ -20,8 +20,6 @@ const traverse = (jsonObj, target) => {
   return null; // Couldn't find target
 };
 
-const arrayTraverse = ()
-
 const append = (parentName, nodeName, treeData) => {
   // parentAddress = traverse(treeData, parent);
   const parent = traverse(treeData, parentName);
@@ -32,11 +30,25 @@ const append = (parentName, nodeName, treeData) => {
   };
 
   if (parent) {
-    parent.children.push(newNode);
+    if (parent.children.length == 2) {
+      if (parseInt(nodeName) > parseInt(parentName)) {
+        // newNode is greater than parent -> append to right child
+        const newParent = parent.children[1];
+        newParent.children.push(newNode);
+      } else {
+        // newNode is less than parent -> append to left child
+        const newParent = parent.children[0];
+        newParent.children.push(newNode);
+      }
+    } else {
+      parent.children.push(newNode);
 
-    // formatChildren(parent); // check if children need to be swapped
-    // console.log("Node appended:", newNode);
-    return 0; // Success
+      if (parent.children.length == 2) {
+        swapChildren(parent); // format children
+      }
+    }
+
+    return; // Success
   } else {
     // console.log("Parent not found.");
     return -1; // Failure, parent does not exist
@@ -44,19 +56,22 @@ const append = (parentName, nodeName, treeData) => {
 };
 
 // correctly append children to parent based on binary tree rules
-// const formatChildren = (parentNode) => {
-//   // const left = parentNode.children[0];
-//   // const right = parentNode.children[1];
-//   // if parseInt(left.name) > parseInt(right.name):
-//   // const temp = left.name;
-//   // left.name = right.name;
-//   // right.name = temp;
-//   // if parentNode.children.length > 2:
-//   // const otherChildren = parentNode.children.slice(1)
-//   //
-// };
+const swapChildren = (parentNode) => {
+  const left = parentNode.children[0];
+  const right = parentNode.children[1];
 
-// TODO: store data as an array of elements and then convert to a json object
+  // note: caller function already verifies that 2 children exist
+  // if (!left || !right) {
+  //   return;
+  // }
+
+  if (parseInt(left.name) > parseInt(right.name)) {
+    const temp = left.name;
+    left.name = right.name;
+    right.name = temp;
+  }
+};
+
 const BST = () => {
   const treeData = {
     name: "root",
@@ -77,8 +92,11 @@ const BST = () => {
     ],
   };
 
+  append("1", "4", treeData);
+  append("5", "7", treeData);
+  append("5", "6", treeData);
+
   // randomly append data until height is 10 or something, use hashset to avoid reusing data, append nums 1-100
-  // TODO: still need to ensure that nodes append like a binary tree (greater on right, smaller on left)
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
