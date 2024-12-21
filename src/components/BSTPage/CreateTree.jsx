@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 
@@ -7,12 +8,11 @@ import Tree from "react-d3-tree";
 const traverse = (jsonObj, target) => {
   if (jsonObj !== null && typeof jsonObj === "object") {
     if (jsonObj.name === target) {
-      // console.log("found target:", jsonObj);
       return jsonObj; // Return the found node immediately
     }
 
     // return the result of traversing the children recursively
-    for (let [key, value] of Object.entries(jsonObj)) {
+    for (let [, value] of Object.entries(jsonObj)) {
       const result = traverse(value, target);
       if (result) return result; // If a result is found, propagate it up (fixes issue where function returned null)
     }
@@ -49,7 +49,6 @@ const append = (parentName, nodeName, treeData) => {
 
     return; // Success
   } else {
-    // console.log("Parent not found.");
     return -1; // Failure, parent does not exist
   }
 };
@@ -99,7 +98,7 @@ const checkAllNodes = (tree, seen = []) => {
 };
 
 // create tree of height 5
-const createRandomTree = (tree) => {
+export const createRandomTree = (tree) => {
   let height = calculateHeight(tree);
   const validValues = [];
   const invalidValues = checkAllNodes(tree).map((val) => parseInt(val, 10)); // values already in tree (converted to ints for comparisons)
@@ -136,14 +135,7 @@ const createRandomTree = (tree) => {
   }
 };
 
-const BST = () => {
-  // name: Math.floor(Math.random() * 100) + 1,
-
-  const treeData = {
-    name: "65",
-    children: [],
-  };
-
+export const BST = ({ tree }) => {
   // FOR TESTING:
 
   // const rootValue = 65;
@@ -152,8 +144,6 @@ const BST = () => {
   //     append("65", i.toString(), treeData);
   //   }
   // }
-
-  createRandomTree(treeData);
 
   // resize tree svg
   const [dimensions, setDimensions] = useState({
@@ -180,7 +170,7 @@ const BST = () => {
   return (
     <div className="treeWrapper" style={containerStyles}>
       <Tree
-        data={treeData}
+        data={tree}
         translate={{
           x: dimensions.width * 0.31, // 31vw
           y: dimensions.height * 0.03, // 3vh
@@ -192,5 +182,3 @@ const BST = () => {
     </div>
   );
 };
-
-export default BST;

@@ -1,7 +1,23 @@
+import { useState } from "react";
 import classes from "./BSTPage.module.css";
-import BST from "./CreateTree";
+import { BST, createRandomTree } from "./CreateTree";
 
+const treeData = {
+  name: Math.floor(Math.random() * 100) + 1,
+  children: [],
+};
+
+// This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
 const BSTPage = () => {
+  const [tree, setTree] = useState(treeData);
+
+  // generate tree onClick
+  const handleGenerateTree = () => {
+    const newTree = { name: Math.floor(Math.random() * 100) + 1, children: [] };
+    createRandomTree(newTree);
+    setTree(newTree);
+  };
+
   return (
     <div className={classes.container}>
       <section className={classes.leftDisplay}>
@@ -10,35 +26,15 @@ const BSTPage = () => {
           To the left is a binary tree that will demonstrate Breadth First
           Search (BFS) or Depth First Search (DFS).
         </p>
-        <div>This is where user input for node creation will go</div>
+        <div>*Button: append node*</div>
+        <button onClick={handleGenerateTree}>Create Random Tree</button>
       </section>
       <div className={classes.separator}></div>
       <section className={classes.rightDisplay}>
-        <BST />
+        <BST tree={tree} />
       </section>
     </div>
   );
 };
 
 export default BSTPage;
-
-// This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
-
-// binary tree:
-// left is smaller than parent
-// right is larger
-
-// page functionality:
-// create a root node of a random number 1-100
-// ask users to enter a number (1-100):
-//  - split the page into 2/3 (the left 1/3 will be the desc and user input, while the right 2/3 will display the tree)
-//  - create a panel that takes user input (the int size of the node)
-//  - store that input (in an array? )
-// append a node to the tree in its correct position
-//
-
-// how to store user input:
-//  - use an array, where
-
-// additional functionality:
-// - automatically create a tree (or finish creating a tree) of a set height
