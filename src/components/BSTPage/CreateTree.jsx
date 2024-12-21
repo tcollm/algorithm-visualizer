@@ -102,36 +102,49 @@ const checkAllNodes = (tree, seen = []) => {
 const createRandomTree = (tree) => {
   let height = calculateHeight(tree);
   const validValues = [];
+  const invalidValues = checkAllNodes(tree).map((val) => parseInt(val, 10)); // values already in tree (converted to ints for comparisons)
+
   for (let i = 1; i <= 100; i++) {
-    validValues.push(i);
+    if (!invalidValues.includes(i)) {
+      validValues.push(i);
+    }
   }
 
-  // TODO: get all of the node values from the tree and remove them from the validValues array
-  // (allows an existing tree to be created)
-
-  // checkAllNodes(tree) function, returns array of tree values
-
-  validValues.splice(tree.name, 1); // delete root from array
+  // tree is already full of all ints 1 to 100
+  if (validValues.length === 0) {
+    console.warn(
+      "CreateRandomTree: Valid values array is empty, no values to append."
+    );
+    return;
+  }
 
   // get random value, append to tree and remove from array
-  while (height < 5) {
+  while (height < 33) {
     let randIndex = Math.floor(Math.random() * validValues.length);
-    append(tree.name, validValues[randIndex], tree);
+    append(tree.name, validValues[randIndex].toString(), tree); // convert nodes back to strings (required for react-d3-tree)
     validValues.splice(randIndex, 1);
     height = calculateHeight(tree);
   }
 };
 
 const BST = () => {
+  // name: Math.floor(Math.random() * 100) + 1,
+
   const treeData = {
-    name: Math.floor(Math.random() * 100) + 1,
+    name: "65",
     children: [],
   };
 
-  createRandomTree(treeData);
+  // FOR TESTING:
 
-  const allNodes = checkAllNodes(treeData);
-  console.log("All nodes:", allNodes);
+  // const rootValue = 65;
+  // for (int i = 1; i < 100; i++) {
+  //   if (i !== rootValue) {
+  //     append("65", i.toString(), treeData);
+  //   }
+  // }
+
+  createRandomTree(treeData);
 
   // resize tree svg
   const [dimensions, setDimensions] = useState({
