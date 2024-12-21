@@ -85,6 +85,36 @@ const BST = () => {
     children: [],
   };
 
+  append("9", "8", treeData);
+  append("9", "7", treeData);
+  append("9", "6", treeData);
+  append("9", "5", treeData);
+  append("9", "4", treeData);
+  append("9", "3", treeData);
+  append("9", "2", treeData);
+  append("9", "1", treeData);
+  append("9", "0", treeData);
+
+  append("9", "10", treeData);
+  append("9", "11", treeData);
+  append("9", "12", treeData);
+  append("9", "13", treeData);
+  append("9", "14", treeData);
+  append("9", "15", treeData);
+  append("9", "16", treeData);
+  append("9", "17", treeData);
+  append("9", "18", treeData);
+
+  append("9", "19", treeData);
+  append("9", "20", treeData);
+  append("9", "21", treeData);
+  append("9", "22", treeData);
+  append("9", "23", treeData);
+  append("9", "24", treeData);
+  append("9", "25", treeData);
+
+  console.log(calculateHeight(treeData));
+
   // resize tree svg
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -113,10 +143,10 @@ const BST = () => {
         data={treeData}
         translate={{
           x: dimensions.width * 0.31, // 31vw
-          y: dimensions.height * 0.1, // 10vh
+          y: dimensions.height * 0.03, // 3vh
         }}
-        zoomable={false}
-        draggable={false}
+        // zoomable={false}
+        // draggable={false}
         orientation="vertical"
       />
     </div>
