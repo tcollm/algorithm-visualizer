@@ -118,12 +118,21 @@ const createRandomTree = (tree) => {
     return;
   }
 
+  const MAX_TREE_HEIGHT = 5;
   // get random value, append to tree and remove from array
-  while (height < 33) {
+  while (height < MAX_TREE_HEIGHT) {
     let randIndex = Math.floor(Math.random() * validValues.length);
     append(tree.name, validValues[randIndex].toString(), tree); // convert nodes back to strings (required for react-d3-tree)
     validValues.splice(randIndex, 1);
     height = calculateHeight(tree);
+  }
+
+  if (height < 5) {
+    console.warn(
+      "CreateRandomTree: could not build to desired height of ",
+      MAX_TREE_HEIGHT
+    );
+    return;
   }
 };
 
