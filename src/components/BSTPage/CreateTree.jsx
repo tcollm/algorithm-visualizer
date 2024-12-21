@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 
-// TODO: create function to get height of tree
 // TODO: append nodes using user input
 // TODO: randomly build tree of set height
 
@@ -79,41 +78,32 @@ const calculateHeight = (tree) => {
   return Math.max(leftHeight, rightHeight) + 1;
 };
 
+// create tree of height 5
+const createRandomTree = (tree) => {
+  let height = 0;
+  const validValues = [];
+  for (let i = 1; i <= 100; i++) {
+    validValues.push(i);
+  }
+
+  validValues.splice(tree.name, 1); // delete root from array
+
+  // get random value, append to tree and remove from array
+  while (height < 5) {
+    let randIndex = Math.floor(Math.random() * validValues.length);
+    append(tree.name, validValues[randIndex], tree);
+    validValues.splice(randIndex, 1);
+    height = calculateHeight(tree);
+  }
+};
+
 const BST = () => {
   const treeData = {
-    name: "9",
+    name: Math.floor(Math.random() * 100) + 1,
     children: [],
   };
 
-  append("9", "8", treeData);
-  append("9", "7", treeData);
-  append("9", "6", treeData);
-  append("9", "5", treeData);
-  append("9", "4", treeData);
-  append("9", "3", treeData);
-  append("9", "2", treeData);
-  append("9", "1", treeData);
-  append("9", "0", treeData);
-
-  append("9", "10", treeData);
-  append("9", "11", treeData);
-  append("9", "12", treeData);
-  append("9", "13", treeData);
-  append("9", "14", treeData);
-  append("9", "15", treeData);
-  append("9", "16", treeData);
-  append("9", "17", treeData);
-  append("9", "18", treeData);
-
-  append("9", "19", treeData);
-  append("9", "20", treeData);
-  append("9", "21", treeData);
-  append("9", "22", treeData);
-  append("9", "23", treeData);
-  append("9", "24", treeData);
-  append("9", "25", treeData);
-
-  console.log(calculateHeight(treeData));
+  createRandomTree(treeData);
 
   // resize tree svg
   const [dimensions, setDimensions] = useState({
