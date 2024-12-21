@@ -78,13 +78,38 @@ const calculateHeight = (tree) => {
   return Math.max(leftHeight, rightHeight) + 1;
 };
 
+// create an array of all of the node values in the tree
+const checkAllNodes = (tree, seen = []) => {
+  if (!tree) {
+    return seen;
+  }
+
+  seen.push(tree.name);
+
+  // check left child
+  if (tree.children.length > 0) {
+    checkAllNodes(tree.children[0], seen);
+  }
+  // check right child
+  if (tree.children.length > 1) {
+    checkAllNodes(tree.children[1], seen);
+  }
+
+  return seen;
+};
+
 // create tree of height 5
 const createRandomTree = (tree) => {
-  let height = 0;
+  let height = calculateHeight(tree);
   const validValues = [];
   for (let i = 1; i <= 100; i++) {
     validValues.push(i);
   }
+
+  // TODO: get all of the node values from the tree and remove them from the validValues array
+  // (allows an existing tree to be created)
+
+  // checkAllNodes(tree) function, returns array of tree values
 
   validValues.splice(tree.name, 1); // delete root from array
 
@@ -104,6 +129,9 @@ const BST = () => {
   };
 
   createRandomTree(treeData);
+
+  const allNodes = checkAllNodes(treeData);
+  console.log("All nodes:", allNodes);
 
   // resize tree svg
   const [dimensions, setDimensions] = useState({
