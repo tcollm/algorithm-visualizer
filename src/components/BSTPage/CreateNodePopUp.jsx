@@ -2,38 +2,38 @@ import { useState } from "react";
 import { append } from "./CreateTree";
 
 // eslint-disable-next-line react/prop-types
-const CreateNodePopUp = ({ newNodeValue, treeData }) => {
+const CreateNodePopUp = ({ tree, setTree }) => {
   // create node button
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-  // Function to open the pop-up
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
   };
 
-  // Function to close the pop-up
   const handleClosePopup = () => {
     setIsPopupOpen(false);
     setInputValue(""); // Clear the input field
   };
 
-  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    const integerValue = parseInt(inputValue, 10);
-    if (isNaN(integerValue) || integerValue < 1 || integerValue > 100) {
-      alert("Please enter a valid integer.");
+    const nodeValue = parseInt(inputValue, 10);
+    if (isNaN(nodeValue) || nodeValue < 1 || nodeValue > 100) {
+      alert("Please enter a valid integer (1-100).");
     } else {
-      append(newNodeValue, treeData);
-      // You can process the integerValue here (e.g., append to a tree, update state, etc.)
+      console.log("Form: appending %s to tree", nodeValue);
+
+      const newTree = JSON.parse(JSON.stringify(tree));
+      append(newTree.name, nodeValue.toString(), newTree);
+      setTree(newTree); // update tree state
     }
-    handleClosePopup(); // Close the pop-up after submission
+    handleClosePopup();
   };
 
   return (
     <div>
-      <button onClick={handleOpenPopup}>Enter Integer</button>
+      <button onClick={handleOpenPopup}>Create Node</button>
 
       {isPopupOpen && (
         <div
@@ -50,7 +50,7 @@ const CreateNodePopUp = ({ newNodeValue, treeData }) => {
         >
           <form onSubmit={handleSubmit}>
             <label>
-              Enter an Integer:
+              Enter Node Value (1-100):
               <input
                 type="number"
                 value={inputValue}

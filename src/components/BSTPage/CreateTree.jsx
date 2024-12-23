@@ -24,6 +24,7 @@ const traverse = (jsonObj, target) => {
 export const append = (parentName = treeData.name, nodeName, treeData) => {
   // parentAddress = traverse(treeData, parent);
   const parent = traverse(treeData, parentName);
+  console.log("Appending %s to tree", nodeName);
 
   const newNode = {
     name: nodeName,

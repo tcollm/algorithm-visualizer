@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classes from "./BSTPage.module.css";
 import { BST, createRandomTree } from "./CreateTree";
+import CreateNodePopUp from "./CreateNodePopUp";
 
 const treeData = {
   name: Math.floor(Math.random() * 100) + 1,
@@ -11,7 +12,7 @@ const treeData = {
 const BSTPage = () => {
   const [tree, setTree] = useState(treeData);
 
-  // generate tree onClick
+  // generate tree button
   const handleGenerateTree = () => {
     const newTree = { name: Math.floor(Math.random() * 100) + 1, children: [] };
     createRandomTree(newTree);
@@ -26,7 +27,7 @@ const BSTPage = () => {
           To the left is a binary tree that will demonstrate Breadth First
           Search (BFS) or Depth First Search (DFS).
         </p>
-        <div>*Button: append node*</div>
+        <CreateNodePopUp tree={tree} setTree={setTree} />
         <button onClick={handleGenerateTree}>Create Random Tree</button>
       </section>
       <div className={classes.separator}></div>
