@@ -21,7 +21,7 @@ const traverse = (jsonObj, target) => {
   return null; // Couldn't find target
 };
 
-const append = (parentName, nodeName, treeData) => {
+export const append = (parentName = treeData.name, nodeName, treeData) => {
   // parentAddress = traverse(treeData, parent);
   const parent = traverse(treeData, parentName);
 
