@@ -1,26 +1,27 @@
 // Shared helper functions
 
-// append node to tree
-export const append = (parentName, nodeName, treeData) => {
-  // helper to find a node in the tree
-  const traverse = (jsonObj, target) => {
-    if (jsonObj !== null && typeof jsonObj === "object") {
-      if (jsonObj.name === target) {
-        return jsonObj; // Return the found node immediately
-      }
-
-      // return the result of traversing the children recursively
-      for (let [, value] of Object.entries(jsonObj)) {
-        const result = traverse(value, target);
-        if (result) return result; // If a result is found, propagate it up (fixes issue where function returned null)
-      }
+// find a node in the tree
+export const traverse = (jsonObj, target) => {
+  if (jsonObj !== null && typeof jsonObj === "object") {
+    if (jsonObj.name === target) {
+      return jsonObj; // Return the found node immediately
     }
 
-    return null; // Couldn't find target
-  };
+    // recursively search children if they exist
+    if (jsonObj.children) {
+      for (let child of jsonObj.children) {
+        const result = traverse(child, target);
+        if (result) return result;
+      }
+    }
+  }
 
+  return null; // Couldn't find target
+};
+
+// append node to tree
+export const append = (parentName, nodeName, treeData) => {
   const parent = traverse(treeData, parentName);
-  // console.log("Appending %s to tree", nodeName);
 
   const newNode = {
     name: nodeName,

@@ -9,7 +9,7 @@ import { createRandomTree } from "./createRandomTree";
 // This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
 const BTPage = () => {
   const [tree, setTree] = useState({
-    name: Math.floor(Math.random() * 100) + 1,
+    name: (Math.floor(Math.random() * 100) + 1).toString(),
     children: [],
   });
 
@@ -20,7 +20,7 @@ const BTPage = () => {
       if (calculateHeight(prevTree) >= MAX_TREE_HEIGHT) {
         // allow user to destroy tree
         newTree = {
-          name: Math.floor(Math.random() * 100) + 1,
+          name: (Math.floor(Math.random() * 100) + 1).toString(),
           children: [],
         };
       } else {

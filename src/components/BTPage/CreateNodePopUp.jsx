@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { append } from "./treeUtils";
+import { append, traverse } from "./treeUtils";
 
 // eslint-disable-next-line react/prop-types
 const CreateNodePopUp = ({ tree, setTree }) => {
@@ -19,13 +19,17 @@ const CreateNodePopUp = ({ tree, setTree }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const nodeValue = parseInt(inputValue, 10);
+    const nodeValueStr = nodeValue.toString();
+
     if (isNaN(nodeValue) || nodeValue < 1 || nodeValue > 100) {
       alert("Please enter a valid integer (1-100).");
+    } else if (traverse(tree, nodeValueStr)) {
+      alert("Please enter a unique integer that does not exist on the tree.");
     } else {
       // console.log("Form: appending %s to tree", nodeValue);
 
       const newTree = JSON.parse(JSON.stringify(tree));
-      append(newTree.name, nodeValue.toString(), newTree);
+      append(newTree.name, nodeValueStr, newTree);
       setTree(newTree); // update tree state
     }
     handleClosePopup();
