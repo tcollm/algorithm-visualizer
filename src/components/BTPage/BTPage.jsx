@@ -3,20 +3,20 @@ import classes from "./BTPage.module.css";
 import { BT, createRandomTree } from "./CreateTree";
 import CreateNodePopUp from "./CreateNodePopUp";
 
-const treeData = {
-  name: Math.floor(Math.random() * 100) + 1,
-  children: [],
-};
-
 // This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
 const BTPage = () => {
-  const [tree, setTree] = useState(treeData);
+  const [tree, setTree] = useState({
+    name: Math.floor(Math.random() * 100) + 1,
+    children: [],
+  });
 
   // generate tree button
   const handleGenerateTree = () => {
-    const newTree = { name: Math.floor(Math.random() * 100) + 1, children: [] };
-    createRandomTree(newTree);
-    setTree(newTree);
+    setTree((prevTree) => {
+      const newTree = { ...prevTree };
+      createRandomTree(newTree);
+      return newTree;
+    });
   };
 
   return (
