@@ -2,9 +2,6 @@
 import { useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 
-// TODO: append nodes using user input
-// TODO: randomly build tree of set height
-
 const traverse = (jsonObj, target) => {
   if (jsonObj !== null && typeof jsonObj === "object") {
     if (jsonObj.name === target) {
