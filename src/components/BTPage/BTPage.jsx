@@ -1,6 +1,6 @@
 import { useState } from "react";
-import classes from "./BSTPage.module.css";
-import { BST, createRandomTree } from "./CreateTree";
+import classes from "./BTPage.module.css";
+import { BT, createRandomTree } from "./CreateTree";
 import CreateNodePopUp from "./CreateNodePopUp";
 
 const treeData = {
@@ -9,7 +9,7 @@ const treeData = {
 };
 
 // This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
-const BSTPage = () => {
+const BTPage = () => {
   const [tree, setTree] = useState(treeData);
 
   // generate tree button
@@ -32,10 +32,10 @@ const BSTPage = () => {
       </section>
       <div className={classes.separator}></div>
       <section className={classes.rightDisplay}>
-        <BST tree={tree} />
+        <BT tree={tree} />
       </section>
     </div>
   );
 };
 
-export default BSTPage;
+export default BTPage;

@@ -1,7 +1,7 @@
 import App from "./App";
 import HomePage from "./components/HomePage/HomePage";
 import AboutPage from "./components/AboutPage/AboutPage";
-import BSTPage from "./components/BSTPage/BSTPage";
+import BTPage from "./components/BTPage/BTPage";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 const routes = [
@@ -18,8 +18,8 @@ const routes = [
         element: <AboutPage />,
       },
       {
-        path: "/bst",
-        element: <BSTPage />,
+        path: "/bt",
+        element: <BTPage />,
       },
     ],
     errorElement: <ErrorPage />,

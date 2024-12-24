@@ -39,27 +39,11 @@ export const append = (parentName = treeData.name, nodeName, treeData) => {
       }
     } else {
       parent.children.push(newNode);
-
-      if (parent.children.length == 2) {
-        swapChildren(parent); // format children
-      }
     }
 
     return; // Success
   } else {
     return -1; // Failure, parent does not exist
-  }
-};
-
-// correctly append children to parent based on binary tree rules
-const swapChildren = (parentNode) => {
-  const left = parentNode.children[0];
-  const right = parentNode.children[1];
-
-  if (parseInt(left.name) > parseInt(right.name)) {
-    const temp = left.name;
-    left.name = right.name;
-    right.name = temp;
   }
 };
 
@@ -133,7 +117,7 @@ export const createRandomTree = (tree) => {
   }
 };
 
-export const BST = ({ tree }) => {
+export const BT = ({ tree }) => {
   // FOR TESTING:
 
   // const rootValue = 65;

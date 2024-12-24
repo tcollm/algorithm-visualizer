@@ -3,10 +3,10 @@ import classes from "./HomePage.module.css";
 
 const algorithms = [
   {
-    title: "Binary Search",
-    desc: "description of Binary Search.",
+    title: "Search Algorithms",
+    desc: "description of search algorithms.",
     img: "null",
-    link: "bst",
+    link: "bt",
   },
 ];
 
