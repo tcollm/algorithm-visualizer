@@ -1,7 +1,10 @@
 import { useState } from "react";
 import classes from "./BTPage.module.css";
-import { BT, createRandomTree } from "./CreateTree";
+import { BT } from "./CreateTree";
 import CreateNodePopUp from "./CreateNodePopUp";
+import { MAX_TREE_HEIGHT } from "./constants";
+import { calculateHeight } from "./treeUtils";
+import { createRandomTree } from "./createRandomTree";
 
 // This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
 const BTPage = () => {
@@ -13,7 +16,16 @@ const BTPage = () => {
   // generate tree button
   const handleGenerateTree = () => {
     setTree((prevTree) => {
-      const newTree = { ...prevTree };
+      let newTree;
+      if (calculateHeight(prevTree) >= MAX_TREE_HEIGHT) {
+        // allow user to destroy tree
+        newTree = {
+          name: Math.floor(Math.random() * 100) + 1,
+          children: [],
+        };
+      } else {
+        newTree = { ...prevTree };
+      }
       createRandomTree(newTree);
       return newTree;
     });

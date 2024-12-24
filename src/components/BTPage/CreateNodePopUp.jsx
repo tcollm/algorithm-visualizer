@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { append } from "./CreateTree";
+import { append } from "./treeUtils";
 
 // eslint-disable-next-line react/prop-types
 const CreateNodePopUp = ({ tree, setTree }) => {
@@ -22,7 +22,7 @@ const CreateNodePopUp = ({ tree, setTree }) => {
     if (isNaN(nodeValue) || nodeValue < 1 || nodeValue > 100) {
       alert("Please enter a valid integer (1-100).");
     } else {
-      console.log("Form: appending %s to tree", nodeValue);
+      // console.log("Form: appending %s to tree", nodeValue);
 
       const newTree = JSON.parse(JSON.stringify(tree));
       append(newTree.name, nodeValue.toString(), newTree);
