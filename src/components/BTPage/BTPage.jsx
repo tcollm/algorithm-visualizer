@@ -39,8 +39,25 @@ const BTPage = () => {
           To the left is a binary tree that will demonstrate Breadth First
           Search (BFS) or Depth First Search (DFS).
         </p>
-        <CreateNodePopUp tree={tree} setTree={setTree} />
-        <button onClick={handleGenerateTree}>Create Random Tree</button>
+        <section className={classes.createTree}>
+          <h2>Create Tree</h2>
+          <div className={classes.buttonContainer}>
+            <CreateNodePopUp tree={tree} setTree={setTree} />
+            <button onClick={handleGenerateTree}>Create Random Tree</button>
+          </div>
+        </section>
+        <section className={classes.searchAlgos}>
+          <h2>Search Algorithms</h2>
+          <div className={classes.buttonContainer}>
+            <div className={classes.BFSContainer}>
+              <button>BFS</button>
+            </div>
+            <div className={classes.DFSContainer}>
+              <button>DFS</button>
+            </div>
+          </div>
+          <button className={classes.resetButton}>Reset</button>
+        </section>
       </section>
       <div className={classes.separator}></div>
       <section className={classes.rightDisplay}>
