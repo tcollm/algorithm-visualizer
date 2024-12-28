@@ -1,11 +1,12 @@
 import ItemBox from "../ItemBox/ItemBox";
 import classes from "./HomePage.module.css";
+import binaryTreeImg from "/src/assets/binary-tree.jpg";
 
 const algorithms = [
   {
     title: "Search Algorithms",
-    desc: "description of search algorithms.",
-    img: "null",
+    desc: "Build or generate binary trees and visualize DFS and BFS traversals interactively.",
+    img: binaryTreeImg,
     link: "bt",
   },
 ];
