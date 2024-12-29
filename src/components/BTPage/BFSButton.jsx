@@ -11,7 +11,7 @@ export const BFSButton = ({ tree, setTree }) => {
   const handleBFS = () => {
     const targetValue = parseInt(inputValue, 10);
     if (targetValue >= 1 && targetValue <= 100) {
-      BFS(tree, setTree, targetValue);
+      BFS(tree, setTree, targetValue.toString());
       setIsModalOpen(false); // Close modal after running BFS
     } else {
       alert("Please enter a valid integer (1-100).");

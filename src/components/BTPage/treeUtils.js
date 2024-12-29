@@ -1,5 +1,7 @@
 // Shared helper functions
 
+import { DEFAULT_NODE } from "./constants";
+
 // find a node in the tree
 export const traverse = (jsonObj, target) => {
   if (jsonObj !== null && typeof jsonObj === "object") {
@@ -25,6 +27,7 @@ export const append = (parentName, nodeName, treeData) => {
 
   const newNode = {
     name: nodeName,
+    color: DEFAULT_NODE,
     children: [],
   };
 
@@ -58,4 +61,19 @@ export const calculateHeight = (tree) => {
   const rightHeight = calculateHeight(tree.children[1]);
 
   return Math.max(leftHeight, rightHeight) + 1;
+};
+
+// update node color (used by BFS and resetButton)
+export const updateNodeColor = (setTree, node, color) => {
+  node.color = color;
+  setTree((prevTree) => ({ ...prevTree })); // re-render tree
+};
+
+export const resetColors = (setTree, node) => {
+  updateNodeColor(setTree, node, DEFAULT_NODE);
+  if (node.children) {
+    node.children.forEach((child) => {
+      resetColors(setTree, child);
+    });
+  }
 };

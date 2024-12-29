@@ -6,6 +6,7 @@ import { MAX_TREE_HEIGHT, DEFAULT_NODE } from "./constants";
 import { calculateHeight } from "./treeUtils";
 import { createRandomTree } from "./createRandomTree";
 import { BFSButton } from "./BFSButton";
+import { ResetButton } from "./ResetButton";
 
 // This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
 const BTPage = () => {
@@ -53,39 +54,39 @@ const BTPage = () => {
         </section>
         <section className={classes.searchAlgos}>
           <h2>Search Algorithms</h2>
-          <div className={classes.buttonContainer}>
-            <div className={classes.BFSContainer}>
-              <h3>BFS</h3>
-              <p>
-                Breadth-First Search (BFS) explores a tree level by level,
-                starting with the root and checking all sibling nodes at each
-                level before moving to the next. It uses a queue data structure
-                that follows the first-in-first-out (FIFO) principle: nodes are
-                added to the back of the queue as they are discovered, and the
-                front node is removed for processing. Each processed node&apos;s
-                children are then added to the queue. This process continues
-                until the target element is found or all nodes have been
-                explored. BFS is ideal for finding the shortest path in an
-                unweighted tree or graph.
-              </p>
-              <BFSButton tree={tree} setTree={setTree} />
-            </div>
-            <div className={classes.DFSContainer}>
-              <h3>DFS</h3>
-              <p>
-                Depth-First Search (DFS) explores a tree by traversing as deeply
-                as possible along each branch before backtracking. Starting at
-                the root, it uses a stack structure (either explicitly or
-                through recursion) to keep track of nodes. DFS processes each
-                child node before moving to its siblings, diving into one path
-                at a time. The process continues until the target element is
-                found or all nodes have been visited. DFS is useful for tasks
-                like pathfinding in mazes or exploring connected components.
-              </p>
+          <div className={classes.BFSContainer}>
+            <h3>BFS</h3>
+            <p>
+              Breadth-First Search (BFS) explores a tree level by level,
+              starting with the root and checking all sibling nodes at each
+              level before moving to the next. It uses a queue data structure
+              that follows the first-in-first-out (FIFO) principle: nodes are
+              added to the back of the queue as they are discovered, and the
+              front node is removed for processing. Each processed node&apos;s
+              children are then added to the queue. This process continues until
+              the target element is found or all nodes have been explored. BFS
+              is ideal for finding the shortest path in an unweighted tree or
+              graph.
+            </p>
+            <BFSButton tree={tree} setTree={setTree} />
+          </div>
+          <div className={classes.DFSContainer}>
+            <h3>DFS</h3>
+            <p>
+              Depth-First Search (DFS) explores a tree by traversing as deeply
+              as possible along each branch before backtracking. Starting at the
+              root, it uses a stack structure (either explicitly or through
+              recursion) to keep track of nodes. DFS processes each child node
+              before moving to its siblings, diving into one path at a time. The
+              process continues until the target element is found or all nodes
+              have been visited. DFS is useful for tasks like pathfinding in
+              mazes or exploring connected components.
+            </p>
+            <div>
               <button>DFS</button>
             </div>
           </div>
-          <button className={classes.resetButton}>Reset</button>
+          <ResetButton tree={tree} setTree={setTree} />
         </section>
       </section>
       <div className={classes.separator}></div>
