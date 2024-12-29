@@ -2,14 +2,16 @@ import { useState } from "react";
 import classes from "./BTPage.module.css";
 import { BT } from "./CreateTree";
 import CreateNodePopUp from "./CreateNodePopUp";
-import { MAX_TREE_HEIGHT } from "./constants";
+import { MAX_TREE_HEIGHT, DEFAULT_NODE } from "./constants";
 import { calculateHeight } from "./treeUtils";
 import { createRandomTree } from "./createRandomTree";
+import { BFSButton } from "./BFSButton";
 
 // This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
 const BTPage = () => {
   const [tree, setTree] = useState({
     name: (Math.floor(Math.random() * 100) + 1).toString(),
+    color: DEFAULT_NODE,
     children: [],
   });
 
@@ -21,6 +23,7 @@ const BTPage = () => {
         // allow user to destroy tree
         newTree = {
           name: (Math.floor(Math.random() * 100) + 1).toString(),
+          color: DEFAULT_NODE,
           children: [],
         };
       } else {
@@ -65,7 +68,7 @@ const BTPage = () => {
                 explored. BFS is ideal for finding the shortest path in an
                 unweighted tree or graph.
               </p>
-              <button>BFS</button>
+              <BFSButton tree={tree} setTree={setTree} />
             </div>
             <div className={classes.DFSContainer}>
               <h3>DFS</h3>

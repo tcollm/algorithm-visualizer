@@ -1,16 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import { DEFAULT_NODE } from "./constants";
 import Tree from "react-d3-tree";
 
 export const BT = ({ tree }) => {
-  // FOR TESTING:
-  // const rootValue = 65;
-  // for (int i = 1; i < 100; i++) {
-  //   if (i !== rootValue) {
-  //     append("65", i.toString(), treeData);
-  //   }
-  // }
-
   // resize tree svg
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -33,6 +26,16 @@ export const BT = ({ tree }) => {
     height: "100%",
   };
 
+  // allows for color to dynamically be updated
+  const renderNodeWithCustomEvents = ({ nodeDatum }) => (
+    <g>
+      <circle r="15" fill={nodeDatum.color || DEFAULT_NODE} />
+      <text fill="black" strokeWidth="1" x="20">
+        {nodeDatum.name}
+      </text>
+    </g>
+  );
+
   return (
     <div className="treeWrapper" style={containerStyles}>
       <Tree
@@ -41,8 +44,9 @@ export const BT = ({ tree }) => {
           x: dimensions.width * 0.31, // 31vw
           y: dimensions.height * 0.03, // 3vh
         }}
-        // zoomable={false}
-        // draggable={false}
+        renderCustomNodeElement={(treeProps) =>
+          renderNodeWithCustomEvents(treeProps)
+        }
         orientation="vertical"
       />
     </div>

@@ -1,62 +1,36 @@
-export const BFS = (tree, TARGET) => {
+import { VISITED_NODE, TO_BE_VISITED_NODE } from "./constants.js";
+
+// TODO: make changing color more efficient (currently re-renders entire tree)
+export const BFS = (tree, setTree, TARGET) => {
   // yellow = to be visited
   // red = visited
 
-  let queue = [tree]; // temporary storage of nodes
+  let queue = [tree]; // store root node
+
+  const updateNodeColor = (node, color) => {
+    node.color = color;
+    setTree((prevTree) => ({ ...prevTree })); // re-render tree
+  };
 
   while (queue.length > 0) {
-    const currNode = queue.shift();
+    const currNode = queue.shift(); // pop from queue
 
-    // currNode.color = "yellow"; // node is set to be visited
-
+    // found target
     if (currNode.name === TARGET) {
+      updateNodeColor(currNode, VISITED_NODE);
       console.log("Found target: %s", currNode);
       return;
-      //  return array of statuses of nodes (visited, to be visited)
     }
 
-    // currNode.color = "red"; // node has been visited and processed/checked
+    updateNodeColor(currNode, VISITED_NODE);
 
-    if (currNode.children[0]) {
-      queue.push(currNode.children[0]);
-    }
-    if (currNode.children[1]) {
-      queue.push(currNode.children[1]);
+    if (currNode.children) {
+      currNode.children.forEach((child) => {
+        updateNodeColor(child, TO_BE_VISITED_NODE);
+        queue.push(child);
+      });
     }
   }
   console.log("No target found!");
   return;
-  //  return array of statuses of nodes (visited, to be visited)
 };
-
-// For managing state of tree and changing colors:
-// // Example of algorithm to update node color (BFS or DFS)
-// const updateNodeColors = (algorithmResult) => {
-//   console.log("button clicked!");
-//   const updatedTree = updateTreeColors(tree, algorithmResult);
-//   setTree(updatedTree);
-// };
-
-// // Function to update the colors in the tree structure
-// const updateTreeColors = (tree, algorithmResult) => {
-//   const updatedTree = { ...tree };
-
-//   // Example of how you could update nodes based on algorithm results
-//   const updateNode = (node) => {
-//     if (algorithmResult.visitedNodes.includes(node.name)) {
-//       node.color = VISITED_NODE; // Visited nodes are red
-//     }
-//     if (node.children.length > 0) {
-//       node.children.forEach(updateNode); // Recursively update child nodes
-//     }
-
-//     if (algorithmResult.root.includes(node.name)) {
-//       node.color = VISITED_NODE;
-//     } else {
-//       node.color = TO_BE_VISITED_NODE;
-//     }
-//   };
-
-//   updateNode(updatedTree);
-//   return updatedTree;
-// };
