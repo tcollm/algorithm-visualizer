@@ -30,6 +30,7 @@ export const BFS = (tree, setTree, TARGET) => {
     }
   }
   console.log("No target found!");
+
   return;
 };
 

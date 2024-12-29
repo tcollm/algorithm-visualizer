@@ -63,12 +63,27 @@ export const calculateHeight = (tree) => {
   return Math.max(leftHeight, rightHeight) + 1;
 };
 
-// update node color (used by BFS and resetButton)
+// used by resetColors function, and BFS
 export const updateNodeColor = (setTree, node, color) => {
-  node.color = color;
-  setTree((prevTree) => ({ ...prevTree })); // re-render tree
+  const updatedNode = { ...node, color };
+  setTree((prevTree) => {
+    const updatedTree = updateNodeInTree(prevTree, updatedNode);
+    return updatedTree;
+  });
 };
 
+// create copy of old node instead of updating previous one
+const updateNodeInTree = (tree, updatedNode) => {
+  if (tree.name === updatedNode.name) return updatedNode;
+  if (tree.children) {
+    tree.children = tree.children.map((child) =>
+      updateNodeInTree(child, updatedNode)
+    );
+  }
+  return tree; // return root if no node matches
+};
+
+// reset node color to default (used by BFS and resetButton)
 export const resetColors = (setTree, node) => {
   updateNodeColor(setTree, node, DEFAULT_NODE);
   if (node.children) {
