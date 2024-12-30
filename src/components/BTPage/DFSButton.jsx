@@ -1,20 +1,15 @@
-// Create pop up when user clicks BFS button to get an input
 import { useState } from "react";
-// import { BFS } from "./BFS";
-import { DelayedBFS } from "./DelayedBFS";
 import styles from "./SearchButton.module.css";
 
-// eslint-disable-next-line react/prop-types
-export const BFSButton = ({ tree, setTree }) => {
+export const DFSButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-  const handleBFS = () => {
+  const handleDFS = () => {
     const targetValue = parseInt(inputValue, 10);
     if (targetValue >= 1 && targetValue <= 100) {
-      DelayedBFS(tree, setTree, targetValue.toString());
-      // BFS(tree, setTree, targetValue.toString());
-      setIsModalOpen(false); // Close modal after running BFS
+      // DFS();
+      setIsModalOpen(false);
     } else {
       alert("Please enter a valid integer (1-100).");
     }
@@ -22,7 +17,7 @@ export const BFSButton = ({ tree, setTree }) => {
 
   return (
     <div>
-      <button onClick={() => setIsModalOpen(true)}>BFS</button>
+      <button onClick={() => setIsModalOpen(true)}>DFS</button>
       {isModalOpen && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>
@@ -34,7 +29,7 @@ export const BFSButton = ({ tree, setTree }) => {
               min="1"
               max="100"
             />
-            <button onClick={handleBFS}>Submit</button>
+            <button onClick={handleDFS}>Submit</button>
             <button onClick={() => setIsModalOpen(false)}>Cancel</button>
           </div>
         </div>
