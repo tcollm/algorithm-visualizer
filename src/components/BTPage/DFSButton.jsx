@@ -1,14 +1,16 @@
 import { useState } from "react";
 import styles from "./SearchButton.module.css";
+import { DFS } from "./DFS";
 
-export const DFSButton = () => {
+// eslint-disable-next-line react/prop-types
+export const DFSButton = ({ tree, setTree }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   const handleDFS = () => {
     const targetValue = parseInt(inputValue, 10);
     if (targetValue >= 1 && targetValue <= 100) {
-      // DFS();
+      DFS(tree, setTree, targetValue.toString());
       setIsModalOpen(false);
     } else {
       alert("Please enter a valid integer (1-100).");

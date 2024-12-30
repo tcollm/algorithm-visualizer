@@ -1,21 +1,21 @@
-import { VISITED_NODE, TO_BE_VISITED_NODE, TARGET_NODE } from "./constants.js";
-import { resetColors, updateNodeColor } from "./treeUtils.js";
+import { TARGET_NODE, TO_BE_VISITED_NODE, VISITED_NODE } from "./constants";
+import { resetColors, updateNodeColor } from "./treeUtils";
 
-// This is a modification of BFS to process one node at a time (so that the user can process what is happening in the algorithm)
-export const DelayedBFS = (tree, setTree, TARGET) => {
-  // reset tree colors before searching
+// Modification of DFS to process one node at a time (similar to DelayedBFS)
+export const DFS = (tree, setTree, TARGET) => {
+  // reset colors before processing
   resetColors(tree, setTree);
 
-  let queue = [tree]; // store root node
+  let stack = [tree];
 
   const processNode = () => {
-    // exhausted queue
-    if (queue.length === 0) {
+    // exhausted stack
+    if (stack.length === 0) {
       console.log("No target found!");
       return;
     }
 
-    const currNode = queue.shift(); // pop from queue
+    const currNode = stack.pop();
 
     // found target
     if (currNode.name === TARGET) {
@@ -31,11 +31,11 @@ export const DelayedBFS = (tree, setTree, TARGET) => {
     if (currNode.children) {
       currNode.children.forEach((child) => {
         updateNodeColor(setTree, child, TO_BE_VISITED_NODE);
-        queue.push(child);
+        stack.push(child);
       });
     }
 
-    // timeout before the next node is processed (500ms)
+    // timeout before processing next node (500ms)
     setTimeout(processNode, 500);
   };
 

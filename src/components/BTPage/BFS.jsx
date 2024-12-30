@@ -4,7 +4,7 @@ import { resetColors, updateNodeColor } from "./treeUtils.js";
 // TODO: make changing color more efficient (currently re-renders entire tree)
 export const BFS = (tree, setTree, TARGET) => {
   // reset tree colors before searching
-  resetColors(setTree, tree);
+  resetColors(tree, setTree);
 
   let queue = [tree]; // store root node
 
