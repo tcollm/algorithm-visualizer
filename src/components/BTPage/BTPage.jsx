@@ -6,6 +6,7 @@ import { MAX_TREE_HEIGHT, DEFAULT_NODE } from "./constants";
 import { calculateHeight } from "./treeUtils";
 import { createRandomTree } from "./createRandomTree";
 import { BFSButton } from "./BFSButton";
+import { DFSButton } from "./DFSButton";
 import { ResetButton } from "./ResetButton";
 
 // This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
@@ -82,9 +83,7 @@ const BTPage = () => {
               have been visited. DFS is useful for tasks like pathfinding in
               mazes or exploring connected components.
             </p>
-            <div>
-              <button>DFS</button>
-            </div>
+            <DFSButton tree={tree} setTree={setTree} />
           </div>
           <ResetButton tree={tree} setTree={setTree} />
         </section>

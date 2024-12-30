@@ -27,12 +27,15 @@ export const DFS = (tree, setTree, TARGET) => {
     // mark current node as visited
     updateNodeColor(setTree, currNode, VISITED_NODE);
 
-    // stage children
+    // stage children (reverse order so that tree is processed left to right)
     if (currNode.children) {
-      currNode.children.forEach((child) => {
-        updateNodeColor(setTree, child, TO_BE_VISITED_NODE);
-        stack.push(child);
-      });
+      currNode.children
+        .slice()
+        .reverse()
+        .forEach((child) => {
+          updateNodeColor(setTree, child, TO_BE_VISITED_NODE);
+          stack.push(child);
+        });
     }
 
     // timeout before processing next node (500ms)
