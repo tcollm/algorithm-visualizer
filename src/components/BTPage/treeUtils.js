@@ -67,8 +67,7 @@ export const calculateHeight = (tree) => {
 export const updateNodeColor = (setTree, node, color) => {
   const updatedNode = { ...node, color };
   setTree((prevTree) => {
-    const updatedTree = updateNodeInTree(prevTree, updatedNode);
-    return updatedTree;
+    return updateNodeInTree(prevTree, updatedNode);
   });
 };
 
@@ -76,9 +75,12 @@ export const updateNodeColor = (setTree, node, color) => {
 const updateNodeInTree = (tree, updatedNode) => {
   if (tree.name === updatedNode.name) return updatedNode;
   if (tree.children) {
-    tree.children = tree.children.map((child) =>
-      updateNodeInTree(child, updatedNode)
-    );
+    return {
+      ...tree,
+      children: tree.children.map((child) =>
+        updateNodeInTree(child, updatedNode)
+      ),
+    };
   }
   return tree; // return root if no node matches
 };
