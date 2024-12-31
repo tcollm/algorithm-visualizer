@@ -1,46 +1,91 @@
 // Create pop up when user clicks BFS button to get an input
 import { useState } from "react";
 // import { BFS } from "./BFS";
-import { DelayedBFS } from "./DelayedBFS";
-import styles from "./SearchButton.module.css";
+import { BFS } from "./BFS";
 import { resetColors } from "./treeUtils";
 
 // eslint-disable-next-line react/prop-types
 export const BFSButton = ({ tree, setTree }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-  const handleBFS = () => {
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+    setInputValue(""); // Clear the input field
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const targetValue = parseInt(inputValue, 10);
-    if (targetValue >= 1 && targetValue <= 100) {
-      resetColors(tree, setTree);
-      DelayedBFS(tree, setTree, targetValue.toString());
-      setIsModalOpen(false); // Close modal after running BFS
-    } else {
+
+    if (isNaN(targetValue) || targetValue < 1 || targetValue > 100) {
       alert("Please enter a valid integer (1-100).");
+    } else {
+      resetColors(tree, setTree);
+      BFS(tree, setTree, targetValue.toString());
     }
+    handleClosePopup();
   };
 
   return (
     <div>
-      <button style={{ marginTop: "5px" }} onClick={() => setIsModalOpen(true)}>
+      <button style={{ marginTop: "5px" }} onClick={handleOpenPopup}>
         BFS
       </button>
-      {isModalOpen && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <h3>Enter a value between 1 and 100:</h3>
-            <input
-              type="number"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              min="1"
-              max="100"
-            />
-            <button onClick={handleBFS}>Submit</button>
-            <button onClick={() => setIsModalOpen(false)}>Cancel</button>
-          </div>
+      {isPopupOpen && (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "#fff",
+            padding: "20px",
+            boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+            zIndex: 1000,
+          }}
+        >
+          <form onSubmit={handleSubmit}>
+            <label>
+              Enter Target Value (1-100):
+              <input
+                type="number"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                required
+              />
+            </label>
+            <div style={{ marginTop: "10px" }}>
+              <button type="submit">Submit</button>
+              <button
+                type="button"
+                onClick={handleClosePopup}
+                style={{ marginLeft: "10px" }}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
         </div>
+      )}
+
+      {isPopupOpen && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0, 0, 0, 0.5)",
+            zIndex: 999,
+          }}
+          onClick={handleClosePopup}
+        ></div>
       )}
     </div>
   );

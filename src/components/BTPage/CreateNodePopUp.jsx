@@ -26,8 +26,6 @@ const CreateNodePopUp = ({ tree, setTree }) => {
     } else if (traverse(tree, nodeValueStr)) {
       alert("Please enter a unique integer that does not exist on the tree.");
     } else {
-      // console.log("Form: appending %s to tree", nodeValue);
-
       const newTree = JSON.parse(JSON.stringify(tree));
       append(newTree.name, nodeValueStr, newTree);
       setTree(newTree); // update tree state

@@ -45,12 +45,6 @@ export const createRandomTree = (tree) => {
   while (height < MAX_TREE_HEIGHT) {
     let randIndex = Math.floor(Math.random() * validValues.length);
 
-    // console.log(
-    //   "CreateRandomTree: tree at height %s: %s",
-    //   height,
-    //   JSON.stringify(tree, null, 2)
-    // );
-
     append(tree.name, validValues[randIndex].toString(), tree); // convert nodes back to strings (required for react-d3-tree)
     validValues.splice(randIndex, 1);
     height = calculateHeight(tree);

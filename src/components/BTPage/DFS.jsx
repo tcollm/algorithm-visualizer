@@ -13,7 +13,7 @@ export const DFS = (tree, setTree, TARGET) => {
   const processNode = () => {
     // exhausted stack
     if (stack.length === 0) {
-      console.log("No target found!");
+      alert("No target found!");
       return;
     }
 
@@ -22,7 +22,7 @@ export const DFS = (tree, setTree, TARGET) => {
     // found target
     if (currNode.name === TARGET) {
       updateNodeColor(setTree, currNode, TARGET_NODE);
-      console.log("Found target: %s", currNode.name);
+      alert("Found target: " + TARGET);
       return;
     }
 
