@@ -1,7 +1,7 @@
 import { VISITED_NODE, TO_BE_VISITED_NODE, TARGET_NODE } from "./constants.js";
 import { resetColors, updateNodeColor } from "./treeUtils.js";
 
-// TODO: make changing color more efficient (currently re-renders entire tree)
+// FUNCTION IS NOT USED ANYWHERE (go to DelayedBFS instead)
 export const BFS = (tree, setTree, TARGET) => {
   // reset tree colors before searching
   resetColors(tree, setTree);

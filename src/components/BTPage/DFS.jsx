@@ -1,11 +1,13 @@
-import { TARGET_NODE, TO_BE_VISITED_NODE, VISITED_NODE } from "./constants";
-import { resetColors, updateNodeColor } from "./treeUtils";
+import {
+  TIMEOUT,
+  TARGET_NODE,
+  TO_BE_VISITED_NODE,
+  VISITED_NODE,
+} from "./constants";
+import { updateNodeColor } from "./treeUtils";
 
 // Modification of DFS to process one node at a time (similar to DelayedBFS)
 export const DFS = (tree, setTree, TARGET) => {
-  // reset colors before processing
-  resetColors(tree, setTree);
-
   let stack = [tree];
 
   const processNode = () => {
@@ -39,7 +41,7 @@ export const DFS = (tree, setTree, TARGET) => {
     }
 
     // timeout before processing next node (500ms)
-    setTimeout(processNode, 500);
+    setTimeout(processNode, TIMEOUT);
   };
 
   processNode();

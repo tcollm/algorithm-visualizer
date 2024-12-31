@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./SearchButton.module.css";
 import { DFS } from "./DFS";
+import { resetColors } from "./treeUtils";
 
 // eslint-disable-next-line react/prop-types
 export const DFSButton = ({ tree, setTree }) => {
@@ -10,6 +11,7 @@ export const DFSButton = ({ tree, setTree }) => {
   const handleDFS = () => {
     const targetValue = parseInt(inputValue, 10);
     if (targetValue >= 1 && targetValue <= 100) {
+      resetColors(tree, setTree);
       DFS(tree, setTree, targetValue.toString());
       setIsModalOpen(false);
     } else {

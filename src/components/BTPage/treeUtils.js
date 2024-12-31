@@ -87,7 +87,10 @@ const updateNodeInTree = (tree, updatedNode) => {
 
 // reset node color to default (used by BFS and resetButton)
 export const resetColors = (node, setTree) => {
+  // console.log("Reset called!");
+
   updateNodeColor(setTree, node, DEFAULT_NODE);
+
   if (node.children) {
     node.children.forEach((child) => {
       resetColors(child, setTree);
