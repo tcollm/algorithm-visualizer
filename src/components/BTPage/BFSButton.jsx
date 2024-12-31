@@ -23,7 +23,9 @@ export const BFSButton = ({ tree, setTree }) => {
 
   return (
     <div>
-      <button onClick={() => setIsModalOpen(true)}>BFS</button>
+      <button style={{ marginTop: "5px" }} onClick={() => setIsModalOpen(true)}>
+        BFS
+      </button>
       {isModalOpen && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>

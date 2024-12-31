@@ -55,6 +55,22 @@ const BTPage = () => {
         </section>
         <section className={classes.searchAlgos}>
           <h2>Search Algorithms</h2>
+          <h3>Key</h3>
+          <ul>
+            <li>
+              <span style={{ color: "red" }}>Red: </span>
+              node has been searched (not the target)
+            </li>
+            <li>
+              <span style={{ color: "#B8860B" }}>Yellow: </span>
+              node has been appended to the queue (BFS) or stack (DFS), and will
+              be searched next
+            </li>
+            <li>
+              <span style={{ color: "green" }}>Green: </span>
+              node has been searched (target)
+            </li>
+          </ul>
           <div className={classes.BFSContainer}>
             <h3>BFS</h3>
             <p>

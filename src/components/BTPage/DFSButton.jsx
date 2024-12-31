@@ -21,7 +21,9 @@ export const DFSButton = ({ tree, setTree }) => {
 
   return (
     <div>
-      <button onClick={() => setIsModalOpen(true)}>DFS</button>
+      <button style={{ marginTop: "5px" }} onClick={() => setIsModalOpen(true)}>
+        DFS
+      </button>
       {isModalOpen && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>

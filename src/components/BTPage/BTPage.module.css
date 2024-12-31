@@ -37,6 +37,7 @@ body {
 .separator {
   width: 1px;
   background-color: var(--black);
+  height: 107vh; /* manual fix for separator not spanning full page */
 }
 
 h2 {
@@ -47,7 +48,7 @@ h2 {
 
 h3 {
   margin: 0;
-  padding: 0;
+  padding: 5px;
 }
 
 button {
@@ -56,9 +57,17 @@ button {
   padding: 5px 10px;
 }
 
-/* button:hover {
+ul {
+  list-style-type: none;
+}
 
-} */
+li {
+  margin-bottom: 5px;
+}
+
+p {
+  padding: 5px;
+}
 
 .buttonContainer {
   display: flex;
@@ -78,10 +87,4 @@ button {
 .DFSContainer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
-/* 
-.resetButton {
-  align-self: flex-end;
-  margin-top: 20px;
-} */
