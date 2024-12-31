@@ -9,7 +9,7 @@ import { BFSButton } from "./BFSButton";
 import { DFSButton } from "./DFSButton";
 import { ResetButton } from "./ResetButton";
 
-// This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
+// This page creates a binary tree using react-d3-tree, and then the user can choose to use BFS or DFS to find a target element
 const BTPage = () => {
   const [tree, setTree] = useState({
     name: (Math.floor(Math.random() * 100) + 1).toString(),

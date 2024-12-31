@@ -4,6 +4,7 @@ import AboutPage from "./components/AboutPage/AboutPage";
 import BTPage from "./components/BTPage/BTPage";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import ContactPage from "./components/ContactPage/ContactPage";
+import SortPage from "./components/SortPage/SortPage";
 
 const routes = [
   {
@@ -19,12 +20,16 @@ const routes = [
         element: <AboutPage />,
       },
       {
+        path: "/contact",
+        element: <ContactPage />,
+      },
+      {
         path: "/bt",
         element: <BTPage />,
       },
       {
-        path: "/contact",
-        element: <ContactPage />,
+        path: "/sort",
+        element: <SortPage />,
       },
     ],
     errorElement: <ErrorPage />,

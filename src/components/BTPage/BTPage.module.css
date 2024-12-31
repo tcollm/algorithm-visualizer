@@ -3,7 +3,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  /* height: 100vh; */
+  height: 100%;
 }
 
 .container {
@@ -13,12 +13,6 @@ body {
   margin-top: 70px;
   color: var(--black);
   background-color: var(--white);
-  height: 100vh;
-}
-
-.leftDisplay,
-.rightDisplay,
-.separator {
   height: 100%;
 }
 
@@ -28,6 +22,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  background-color: var(--gray);
 }
 
 .rightDisplay {
@@ -37,7 +32,7 @@ body {
 .separator {
   width: 1px;
   background-color: var(--black);
-  height: 107vh;
+  /* height: 100%; */
 }
 
 h2 {

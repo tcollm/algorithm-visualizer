@@ -9,6 +9,12 @@ const algorithms = [
     img: binaryTreeImg,
     link: "bt",
   },
+  {
+    title: "Sorting Algorithms",
+    desc: "Sorting Algorithms description",
+    img: null,
+    link: "sort",
+  },
 ];
 
 const HomePage = () => {
