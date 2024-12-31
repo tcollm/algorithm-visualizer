@@ -11,36 +11,39 @@ const ContactPage = () => {
 
       <div className={styles.contactDetails}>
         <div className={styles.contactItem}>
-          <h3>Email:</h3>
-          <a href="mailto:your-email@example.com">your-email@example.com</a>
-        </div>
-
-        <div className={styles.contactItem}>
-          <h3>LinkedIn:</h3>
           <a
-            href="https://www.linkedin.com/in/your-profile"
+            href="https://www.linkedin.com/in/tyler-collingridge-811630290/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn Profile
+            <img
+              src="../src/assets/linkedin-svgrepo-com.svg"
+              alt="Github"
+              width="60"
+              height="60"
+            />
           </a>
         </div>
 
         <div className={styles.contactItem}>
-          <h3>GitHub:</h3>
           <a
-            href="https://github.com/your-username"
+            href="https://github.com/tcollm"
             target="_blank"
             rel="noopener noreferrer"
           >
-            GitHub Profile
+            <img
+              src="../src/assets/github-142-svgrepo-com.svg"
+              alt="Github"
+              width="50"
+              height="50"
+            />
           </a>
         </div>
       </div>
 
       <h2>Or send a message directly:</h2>
       <form
-        action="mailto:your-email@example.com"
+        action="mailto:collingridgetyler@gmail.com"
         method="post"
         encType="text/plain"
       >
