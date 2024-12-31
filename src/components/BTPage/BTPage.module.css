@@ -10,7 +10,7 @@ body {
   display: flex;
   position: relative;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 70px;
   color: var(--black);
   background-color: var(--white);
   height: 100vh;
@@ -37,7 +37,7 @@ body {
 .separator {
   width: 1px;
   background-color: var(--black);
-  height: 107vh; /* manual fix for separator not spanning full page */
+  height: 100vh;
 }
 
 h2 {

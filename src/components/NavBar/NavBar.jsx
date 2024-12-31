@@ -23,7 +23,7 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
-          <Link to="contact-me" className={classes.link}>
+          <Link to="contact" className={classes.link}>
             Contact Me
           </Link>
         </li>

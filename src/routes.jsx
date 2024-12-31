@@ -3,6 +3,7 @@ import HomePage from "./components/HomePage/HomePage";
 import AboutPage from "./components/AboutPage/AboutPage";
 import BTPage from "./components/BTPage/BTPage";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
+import ContactPage from "./components/ContactPage/ContactPage";
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
       {
         path: "/bt",
         element: <BTPage />,
+      },
+      {
+        path: "/contact",
+        element: <ContactPage />,
       },
     ],
     errorElement: <ErrorPage />,
