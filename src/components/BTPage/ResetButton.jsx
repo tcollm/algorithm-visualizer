@@ -7,7 +7,10 @@ export const ResetButton = ({ tree, setTree }) => {
     resetColors(tree, setTree);
   };
   return (
-    <button style={{ marginLeft: "auto" }} onClick={handleResetColors}>
+    <button
+      style={{ marginLeft: "auto", marginBottom: "20px" }}
+      onClick={handleResetColors}
+    >
       Reset
     </button>
   );
