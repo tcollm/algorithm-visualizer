@@ -3,7 +3,7 @@ import { DFS } from "./DFS";
 import { resetColors } from "./treeUtils";
 
 // eslint-disable-next-line react/prop-types
-export const DFSButton = ({ tree, setTree }) => {
+const DFSButton = ({ tree, setTree }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
@@ -88,3 +88,5 @@ export const DFSButton = ({ tree, setTree }) => {
     </div>
   );
 };
+
+export default DFSButton;

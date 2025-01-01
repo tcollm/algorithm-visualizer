@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { DEFAULT_NODE } from "./constants";
 import Tree from "react-d3-tree";
 
-export const BT = ({ tree }) => {
+const BT = ({ tree }) => {
   // resize tree svg
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -52,3 +52,5 @@ export const BT = ({ tree }) => {
     </div>
   );
 };
+
+export default BT;

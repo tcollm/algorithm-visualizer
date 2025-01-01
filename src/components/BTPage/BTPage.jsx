@@ -1,13 +1,14 @@
 import { useState } from "react";
 import classes from "./BTPage.module.css";
-import { BT } from "./CreateTree";
+import BT from "./CreateTree";
 import CreateNodePopUp from "./CreateNodePopUp";
 import { MAX_TREE_HEIGHT, DEFAULT_NODE } from "./constants";
 import { calculateHeight } from "./treeUtils";
 import { createRandomTree } from "./createRandomTree";
-import { BFSButton } from "./BFSButton";
-import { DFSButton } from "./DFSButton";
-import { ResetButton } from "./ResetButton";
+import BFSButton from "./BFSButton";
+import DFSButton from "./DFSButton";
+import ResetButton from "./ResetButton";
+import PageLayout from "../AlgoPageLayout/PageLayout";
 
 // This page creates a binary tree using react-d3-tree, and then the user can choose to use BFS or DFS to find a target element
 const BTPage = () => {
@@ -36,80 +37,81 @@ const BTPage = () => {
     });
   };
 
-  return (
-    <div className={classes.container}>
-      <section className={classes.leftDisplay}>
-        <h1>Binary Tree</h1>
-        <p>
-          Visualize tree traversal algorithms with an interactive binary tree
-          builder. Create custom nodes or generate a random binary tree, then
-          explore and execute Breadth-First Search (BFS) and Depth-First Search
-          (DFS) to see how these algorithms work step-by-step.
-        </p>
-        <section className={classes.createTree}>
-          <h2>Create Tree</h2>
-          <div className={classes.buttonContainer}>
-            <CreateNodePopUp tree={tree} setTree={setTree} />
-            <button onClick={handleGenerateTree}>Create Random Tree</button>
-          </div>
-        </section>
-        <section className={classes.searchAlgos}>
-          <h2>Search Algorithms</h2>
-          <h3>Key</h3>
-          <ul>
-            <li>
-              <span style={{ color: "red" }}>Red: </span>
-              node has been searched (not the target)
-            </li>
-            <li>
-              <span style={{ color: "#B8860B" }}>Yellow: </span>
-              node has been appended to the queue (BFS) or stack (DFS), and will
-              be searched next
-            </li>
-            <li>
-              <span style={{ color: "green" }}>Green: </span>
-              node has been searched (target)
-            </li>
-          </ul>
-          <div className={classes.BFSContainer}>
-            <h3>BFS</h3>
-            <p>
-              Breadth-First Search (BFS) explores a tree level by level,
-              starting with the root and checking all sibling nodes at each
-              level before moving to the next. It uses a queue data structure
-              that follows the first-in-first-out (FIFO) principle: nodes are
-              added to the back of the queue as they are discovered, and the
-              front node is removed for processing. Each processed node&apos;s
-              children are then added to the queue. This process continues until
-              the target element is found or all nodes have been explored. BFS
-              is ideal for finding the shortest path in an unweighted tree or
-              graph.
-            </p>
-            <BFSButton tree={tree} setTree={setTree} />
-          </div>
-          <div className={classes.DFSContainer}>
-            <h3>DFS</h3>
-            <p>
-              Depth-First Search (DFS) explores a tree by traversing as deeply
-              as possible along each branch before backtracking. Starting at the
-              root, it uses a stack structure (either explicitly or through
-              recursion) to keep track of nodes. DFS processes each child node
-              before moving to its siblings, diving into one path at a time. The
-              process continues until the target element is found or all nodes
-              have been visited. DFS is useful for tasks like pathfinding in
-              mazes or exploring connected components.
-            </p>
-            <DFSButton tree={tree} setTree={setTree} />
-          </div>
-          <ResetButton tree={tree} setTree={setTree} />
-        </section>
+  const leftContent = (
+    <>
+      <h1>Binary Tree</h1>
+      <p>
+        Visualize tree traversal algorithms with an interactive binary tree
+        builder. Create custom nodes or generate a random binary tree, then
+        explore and execute Breadth-First Search (BFS) and Depth-First Search
+        (DFS) to see how these algorithms work step-by-step.
+      </p>
+      <section className={classes.createTree}>
+        <h2>Create Tree</h2>
+        <div className={classes.buttonContainer}>
+          <CreateNodePopUp tree={tree} setTree={setTree} />
+          <button onClick={handleGenerateTree}>Create Random Tree</button>
+        </div>
       </section>
-      <div className={classes.separator}></div>
-      <section className={classes.rightDisplay}>
-        <BT tree={tree} />
+      <section className={classes.searchAlgos}>
+        <h2>Search Algorithms</h2>
+        <h3>Key</h3>
+        <ul>
+          <li>
+            <span style={{ color: "red" }}>Red: </span>
+            node has been searched (not the target)
+          </li>
+          <li>
+            <span style={{ color: "#B8860B" }}>Yellow: </span>
+            node has been appended to the queue (BFS) or stack (DFS), and will
+            be searched next
+          </li>
+          <li>
+            <span style={{ color: "green" }}>Green: </span>
+            node has been searched (target)
+          </li>
+        </ul>
+        <div className={classes.BFSContainer}>
+          <h3>BFS</h3>
+          <p>
+            Breadth-First Search (BFS) explores a tree level by level, starting
+            with the root and checking all sibling nodes at each level before
+            moving to the next. It uses a queue data structure that follows the
+            first-in-first-out (FIFO) principle: nodes are added to the back of
+            the queue as they are discovered, and the front node is removed for
+            processing. Each processed node&apos;s children are then added to
+            the queue. This process continues until the target element is found
+            or all nodes have been explored. BFS is ideal for finding the
+            shortest path in an unweighted tree or graph.
+          </p>
+          <BFSButton tree={tree} setTree={setTree} />
+        </div>
+        <div className={classes.DFSContainer}>
+          <h3>DFS</h3>
+          <p>
+            Depth-First Search (DFS) explores a tree by traversing as deeply as
+            possible along each branch before backtracking. Starting at the
+            root, it uses a stack structure (either explicitly or through
+            recursion) to keep track of nodes. DFS processes each child node
+            before moving to its siblings, diving into one path at a time. The
+            process continues until the target element is found or all nodes
+            have been visited. DFS is useful for tasks like pathfinding in mazes
+            or exploring connected components.
+          </p>
+          <DFSButton tree={tree} setTree={setTree} />
+        </div>
+        <ResetButton tree={tree} setTree={setTree} />
       </section>
-    </div>
+    </>
   );
+
+  const rightContent = (
+    <>
+      <BT tree={tree} />
+    </>
+  );
+
+  return <PageLayout leftContent={leftContent} rightContent={rightContent} />;
 };
 
 export default BTPage;

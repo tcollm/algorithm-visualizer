@@ -2,7 +2,7 @@
 import { resetColors } from "./treeUtils";
 
 /* eslint-disable react/prop-types */
-export const ResetButton = ({ tree, setTree }) => {
+const ResetButton = ({ tree, setTree }) => {
   const handleResetColors = () => {
     resetColors(tree, setTree);
   };
@@ -15,3 +15,5 @@ export const ResetButton = ({ tree, setTree }) => {
     </button>
   );
 };
+
+export default ResetButton;
