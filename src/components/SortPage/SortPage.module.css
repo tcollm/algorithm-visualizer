@@ -1,0 +1,25 @@
+.arrayContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+.arrayBar {
+  display: inline-block;
+  margin: 0 2px;
+  color: var(--white);
+  font-size: 1rem;
+  background-color: var(--blue);
+  transition: height 0.3s ease, background-color 0.3s ease;
+  width: 2%;
+}
+
+/* vertical text */
+.barText {
+  transform: rotate(90deg);
+  transform-origin: bottom left;
+  white-space: nowrap;
+  text-align: center;
+}
