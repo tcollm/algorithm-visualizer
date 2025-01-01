@@ -1,13 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import PageLayout from "../AlgoPageLayout/PageLayout.jsx";
 import classes from "./SortPage.module.css";
-import {
-  ARRAY_SIZE,
-  MAX_VAL,
-  BAR_HEIGHT,
-  DEFAULT_BAR,
-  MIN_VAL,
-} from "./constants.js";
+import { ARRAY_SIZE, MAX_VAL, MIN_VAL } from "./constants.js";
+import { mergeSort } from "./mergeSort.js";
 
 // From https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
 const randomIntFromInterval = (min, max) => {
@@ -25,7 +20,6 @@ const SortPage = () => {
       const randomVal = randomIntFromInterval(MIN_VAL, MAX_VAL);
       newArray.push(randomVal);
     }
-    console.log(newArray);
     setArray(newArray);
   }, []);
 
@@ -33,10 +27,19 @@ const SortPage = () => {
     resetArray();
   }, [resetArray]);
 
+  const handleMergeSort = () => {
+    const newArray = [...array];
+    console.log("Array before sort: ", newArray);
+    mergeSort(newArray, 0, newArray.length - 1);
+    setArray(newArray);
+    console.log("Array after sort: ", newArray);
+  };
+
   const leftContent = (
     <>
       <h1>Sorting Algorithms</h1>
       <p>Description</p>
+      <button onClick={handleMergeSort}>Merge Sort</button>
       <button onClick={resetArray}>Reset</button>
     </>
   );
