@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import PageLayout from "../AlgoPageLayout/PageLayout.jsx";
 import classes from "./SortPage.module.css";
-import { ARRAY_SIZE, MAX_VAL, MIN_VAL } from "./constants.js";
+import { ARRAY_SIZE, DEFAULT_BAR, MAX_VAL, MIN_VAL } from "./constants.js";
 import { mergeSort } from "./mergeSort.js";
 
 // From https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
 const randomIntFromInterval = (min, max) => {
-  // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
@@ -14,11 +13,12 @@ const randomIntFromInterval = (min, max) => {
 const SortPage = () => {
   const [array, setArray] = useState([]);
 
+  // useCallback ensures that reset only occurs onMount (and when clicked)
   const resetArray = useCallback(() => {
     const newArray = [];
     for (let i = 0; i < ARRAY_SIZE; i++) {
       const randomVal = randomIntFromInterval(MIN_VAL, MAX_VAL);
-      newArray.push(randomVal);
+      newArray.push({ value: randomVal, color: DEFAULT_BAR });
     }
     setArray(newArray);
   }, []);
@@ -31,8 +31,8 @@ const SortPage = () => {
     const newArray = [...array];
     console.log("Array before sort: ", newArray);
     mergeSort(newArray, 0, newArray.length - 1);
+    console.log("Array after sorting: ", newArray);
     setArray(newArray);
-    console.log("Array after sort: ", newArray);
   };
 
   const leftContent = (
@@ -47,16 +47,16 @@ const SortPage = () => {
   const rightContent = (
     <div className={classes.arrayContainer}>
       <div>
-        {array.map((value, index) => (
+        {array.map((bar, index) => (
           <div
             className={classes.arrayBar}
             key={index}
             style={{
-              height: `${(value / MAX_VAL) * 50 + 3}vh`, // Set height proportionate to MAX_VAL
-              // width: `${Math.min(100 / ARRAY_SIZE, 20)}px`, // Dynamically adjust bar width based on array size
+              height: `${(bar.value / MAX_VAL) * 50 + 3}vh`, // Set height proportionate to MAX_VAL (+3 makes small values more visible)
+              backgroundColor: bar.color,
             }}
           >
-            <div className={classes.barText}>{value}</div>
+            <div className={classes.barText}>{bar.value}</div>
           </div>
         ))}
       </div>
