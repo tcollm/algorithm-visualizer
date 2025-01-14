@@ -41,7 +41,7 @@ const ContactPage = () => {
         </div>
       </div>
 
-      <h2>Or send a message directly:</h2>
+      {/* <h2>Or send a message directly:</h2>
       <form
         action="mailto:collingridgetyler@gmail.com"
         method="post"
@@ -58,7 +58,7 @@ const ContactPage = () => {
         </div>
 
         <button type="submit">Send Message</button>
-      </form>
+      </form> */}
     </section>
   );
 };

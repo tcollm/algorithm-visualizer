@@ -9,7 +9,7 @@ const randomIntFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-// This page will create a binary tree using D3.js and then the user can choose to use BFS or DFS to find a target element
+// this page creates an array of bars and also the user to choose a sorting algorithm
 const SortPage = () => {
   const [array, setArray] = useState([]);
 
@@ -29,9 +29,7 @@ const SortPage = () => {
 
   const handleMergeSort = () => {
     const newArray = [...array];
-    console.log("Array before sort: ", newArray);
     mergeSort(newArray, 0, newArray.length - 1);
-    console.log("Array after sorting: ", newArray);
     setArray(newArray);
   };
 
